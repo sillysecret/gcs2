@@ -2,20 +2,20 @@ public class Cliente{
     private int cpf;
     private String nome;
     private int idade;
-    private String genero;
+    private char genero;
 
-    public Cliente(int idade,int cpf,String nome,String genero){
+    public Cliente(int idade,int cpf,String nome,char genero){
         this.setGenero(genero);
         this.setCpf(cpf);
         this.setNome(nome);
         this.setIdade(idade);
     }
 
-    public String getGenero() {
+    public char getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(char genero) {
         this.genero = genero;
     }
 
