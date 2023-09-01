@@ -8,10 +8,10 @@ public class Controle {
         num_cliente = 0;
     }
 
-    public void adicionaCliente(String nome, String cpf, int idade, String genero) {
-        if (num_cliente < 100) {
-            Cliente clientes = new Cliente(nome, cpf, idade, genero);
-            cliente[num_cliente] = cliente;
+    public void adicionaCliente(String nome, int cpf, int idade, char genero) {
+        if (num_cliente < capacidade) {
+            Cliente cliente = new Cliente(idade, cpf, nome, genero);
+            clientes[num_cliente] = cliente;
             num_cliente++;
             System.out.println("Cliente adicionado");
         }
@@ -44,8 +44,8 @@ public class Controle {
             }}
         }
         int total = cont_m + cont_f;
-        double percentual_m =  cont_m / totalClientes * 100;
-        double percentual_f =  cont_f / totalClientes * 100;
+        double percentual_m =  (double) cont_m / num_cliente * 100;
+        double percentual_f =  (double) cont_f / num_cliente * 100;
         
         System.out.println("Percentual de clientes masculinos: " + percentual_m + "%");
         System.out.println("Percentual de clientes femininos: " + percentual_f + "%");
@@ -55,8 +55,15 @@ public class Controle {
         for (int i = 0; i < num_cliente; i++) {
             if (clientes[i].getCpf() == cpf) {
                 System.out.println("Saída registrada para o cliente: " + clientes[i].getNome());
+                // Reorganizando o array para remover o cliente
+                for (int j = i; j < num_cliente - 1; j++){
+                    clientes[j] = clientes[j+1];
+                }
+                clientes[num_cliente - 1] = null; // Limpa a última posição
                 num_cliente--;
+                return;
             }
         }
+        System.out.println("Cliente com CPF" + cpf + "não encontrado.");
     }
 }
